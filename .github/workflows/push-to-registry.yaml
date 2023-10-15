@@ -4,7 +4,7 @@ name: Build and publish the container image
 "on":
   push:
     tags:
-      - '1.0.1'
+      - '*'
     branches:
       - 'main'
 
@@ -24,7 +24,7 @@ jobs:
       -
         name: Get tag
         id: repository
-        run: echo "tag=$(git describe --tags HEAD)" > $GITHUB_ENV
+        run: echo ::set-output tag=$(git describe --tags HEAD)
 
       -
         name: Set up QEMU
